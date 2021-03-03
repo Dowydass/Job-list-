@@ -14,16 +14,33 @@ public class CategoriesDAO {
     public static void createTableCategories() {
         String query = "CREATE TABLE IF NOT EXISTS Categories(" +
                 "category_id INTEGER PRIMARY KEY AUTO_INCREMENT," +
-                "category_name VARCHAR(255))";
+                "category_name TEXT)";
+
         try {
             Connection connection = DriverManager.getConnection(URL, USER, PASS);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             System.out.println("Creating table .........");
-            preparedStatement.executeUpdate(query);
+            preparedStatement.executeUpdate();
             System.out.println("Table successfully created.......");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    public static void createCategory(Categories categories){
+        String query =  "INSERT INTO Categories(category_name) VALUES(?)";
 
+        try{
+            Connection connection = DriverManager.getConnection(URL, USER, PASS);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,categories.getCategoryName());
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            connection.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

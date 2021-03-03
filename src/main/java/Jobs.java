@@ -1,32 +1,36 @@
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Jobs")
 public class Jobs {
-  private int jobId;
-  private String jobTitle;
-  private int companyId;
-  private double salary;
-  private String description;
-  private String location;
-  private String position;
-  private int categoryId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "job_id")
+    private int jobId;
+    @Column(name = "job_title")
+    private String jobTitle;
+    @Column(name = "salary")
+    private double salary;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "location")
+    private String location;
+    @Column(name = "position")
+    private String position;
+    @Column(name = "company_id")
+    private int companyId;
+    @Column(name = "category_id")
+    private int categoryId;
 
+    public Jobs( String jobTitle, double salary, String description, String location, String position, int companyId, int categoryId) {
 
-
-    public Jobs(String jobTitle, double salary, String description, String location, String position,int companyId, int categoryId) {
         this.jobTitle = jobTitle;
-        this.companyId = companyId;
         this.salary = salary;
         this.description = description;
         this.location = location;
         this.position = position;
+        this.companyId = companyId;
         this.categoryId = categoryId;
-    }
-
-
-    public int getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(int jobId) {
-        this.jobId = jobId;
     }
 
     public String getJobTitle() {
@@ -35,14 +39,6 @@ public class Jobs {
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
-    }
-
-    public int getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
     }
 
     public double getSalary() {
@@ -77,6 +73,14 @@ public class Jobs {
         this.position = position;
     }
 
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
     public int getCategoryId() {
         return categoryId;
     }
@@ -90,11 +94,11 @@ public class Jobs {
         return "Jobs{" +
                 "jobId=" + jobId +
                 ", jobTitle='" + jobTitle + '\'' +
-                ", companyId=" + companyId +
                 ", salary=" + salary +
                 ", description='" + description + '\'' +
                 ", location='" + location + '\'' +
                 ", position='" + position + '\'' +
+                ", companyId=" + companyId +
                 ", categoryId=" + categoryId +
                 '}';
     }

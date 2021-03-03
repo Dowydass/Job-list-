@@ -11,14 +11,14 @@ public class JobsDAO {
 
     public static void createTableJobs() {
         String query = "CREATE TABLE IF NOT EXISTS Jobs(" +
-                "job_id INTEGER PRIMARY KEY AUTO_INCREMENT," +
-                "job_title VARCHAR(255)," +
-                "salary DOUBLE," +
-                "description TEXT," +
-                "location VARCHAR(255)," +
-                "position VARCHAR(255)," +
-                "category_id INTEGER,"+
-                "company_id INTEGER,"+
+                "job_id INT PRIMARY KEY AUTO_INCREMENT," +
+                "job_title TEXT," +         //job_title TEXT
+                "salary TEXT," +            //salary TEXT
+                "description TEXT," +       //description TEXT
+                "location TEXT," +          //location TEXT
+                "position TEXT," +
+                "category_id INT,"+         // category_id INT
+                "company_id INT,"+          // company_id INT
                 "FOREIGN KEY (category_id) REFERENCES Categories(category_id),"+
                 "FOREIGN KEY (company_id) REFERENCES Companies(company_id))";
 
@@ -47,7 +47,6 @@ public class JobsDAO {
             preparedStatement.setInt(6, job.getCategoryId());
             preparedStatement.setInt(7, job.getCompanyId());
 
-
             preparedStatement.executeUpdate();
             System.out.println("New job was added...");
 
@@ -57,5 +56,6 @@ public class JobsDAO {
         }catch (SQLException e){
             e.printStackTrace();
         }
+
     }
 }
